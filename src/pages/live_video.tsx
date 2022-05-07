@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { Button } from "@mui/material"
 import Link from "next/link"
 import { NextPage } from "next/types"
@@ -7,6 +7,7 @@ import { Element as P5Element } from "p5"
 
 // import '../styles/videoCapture.module.css'
 import quotes from '../../public/quotes.txt'
+import { Box } from "@mui/system"
 
 
 const sketch = (p5: P5Instance) => {
@@ -36,7 +37,7 @@ const sketch = (p5: P5Instance) => {
         // let output = ''
 
         p5.background(0)
-        p5.frameRate(12);
+        p5.frameRate(8);
         videoCapture.loadPixels()
 
         for (let i = 0; i < videoCapture.width; i++) {
@@ -49,18 +50,26 @@ const sketch = (p5: P5Instance) => {
                 const avg = (r + g + b) / 3;
 
                 p5.noStroke()
-                p5.fill(avg);
-                p5.textSize(w * 1.2);
+                p5.fill(avg)
+                p5.textSize(w * 1.2)
                 p5.textAlign(p5.CENTER, p5.CENTER);
 
-                p5.text(quotes.charAt(charIndex % quotes.length), i * w + w * 0.5, j * h + h * 0.5);
-                charIndex++;
+                p5.text(
+                    quotes.charAt(charIndex % quotes.length),
+                    i * w + w * 0.5,
+                    j * h + h * 0.5
+                )
+                charIndex++
             }
             // output += '<br/>'
             // outputDiv.html(`<pre>${output}</pre>`)
             startIndex++
         }
     }
+}
+
+const StartButton = ({ onClick }) => {
+    return (<Button onClick={onClick}>Start Camera</Button>)
 }
 
 const LiveVideoPage: NextPage = () => {
@@ -71,18 +80,22 @@ const LiveVideoPage: NextPage = () => {
     useEffect(() => {
         const { ReactP5Wrapper } = require('react-p5-wrapper')
         P5Wrapper.current = ReactP5Wrapper
-        setIsReady(true)
     }, [])
+
+    const startVideoCapture = useCallback(() => setIsReady(true), [])
 
     return (
         <>
-            <div>Video Here</div>
+            <Box>Video Here</Box>
+            <StartButton onClick={startVideoCapture} />
             {isReady &&
                 <P5Wrapper.current sketch={sketch} />
             }
-            <Link href="/">
-                <Button data-testid="video-page-home-link">Back to homepage</Button>
-            </Link>
+            <Box>
+                <Link href="/">
+                    <Button data-testid="video-page-home-link">Back to homepage</Button>
+                </Link>
+            </Box>
         </>
     )
 }
