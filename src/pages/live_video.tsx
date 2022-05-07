@@ -39,9 +39,8 @@ const sketch = (p5: P5Instance) => {
         p5.background(0)
         p5.frameRate(8);
         videoCapture.loadPixels()
-
-        for (let i = 0; i < videoCapture.width; i++) {
-            for (let j = 0; j < videoCapture.height; j++) {
+        for (let j = videoCapture.height; j > 0; j--) {
+            for (let i = 0; i < videoCapture.width; i++) {
 
                 const pixelIndex = (i + j * videoCapture.width) * 4
                 const r = videoCapture.pixels[pixelIndex + 0];
