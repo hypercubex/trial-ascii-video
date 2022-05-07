@@ -41,7 +41,7 @@ const sketch = (p5: P5Instance) => {
         videoCapture.loadPixels()
 
         for (let i = 0; i < videoCapture.width; i++) {
-            for (let j = 0; j < videoCapture.height; j++) {
+            for (let j = videoCapture.height; j > 0; j--) {
 
                 const pixelIndex = (i + j * videoCapture.width) * 4
                 const r = videoCapture.pixels[pixelIndex + 0];
@@ -63,8 +63,8 @@ const sketch = (p5: P5Instance) => {
             }
             // output += '<br/>'
             // outputDiv.html(`<pre>${output}</pre>`)
-            startIndex++
         }
+        startIndex++
     }
 }
 
