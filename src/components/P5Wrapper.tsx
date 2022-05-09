@@ -11,6 +11,7 @@ const P5Wrapper = () => {
     const [outputHeight, setOutputHeight] = useState(480)
     const videoRef = useRef<P5MediaElement>()
 
+    const [Wrapper, setWrapper] = useState()
     const setupSketch = useCallback(
         (): Function => {
             let startIndex = 0
@@ -33,6 +34,9 @@ const P5Wrapper = () => {
                     const video = videoRef.current
                     p5.background(0)
                     p5.frameRate(8);
+                    p5.translate(outputWidth, 0)
+                    p5.scale(-1, 1);
+                    
                     video.loadPixels()
 
                     for (let i = 0; i < videoWidth; i++) {
@@ -66,19 +70,21 @@ const P5Wrapper = () => {
             return sketch
         }, []
     )
-    const wrapperRef = useRef()
+    
     useEffect(() => {
         const setupWrapper = async () => {
             const { ReactP5Wrapper } = await import('react-p5-wrapper')
-            wrapperRef.current = ReactP5Wrapper
+            if (ReactP5Wrapper) {
+                setWrapper(ReactP5Wrapper)
+            }
         }
         setupWrapper()
     }, [])
 
-    console.log('rendering wrapper', wrapperRef.current)
+    // console.log('rendering wrapper', Wrapper)
 
     // TODO: group status flags
-    return wrapperRef.current ? <wrapperRef.current sketch={setupSketch()} /> : <></>
+    return Wrapper ? <Wrapper sketch={setupSketch()} /> : <></>
 }
 
 
