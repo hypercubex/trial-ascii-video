@@ -1,4 +1,4 @@
-Don't worry about what anybody else is going to do. The best way to
+const quotes = `Don't worry about what anybody else is going to do. The best way to
 predict the future is to invent it.
 -- Alan Kay
 
@@ -155,7 +155,7 @@ for machines to execute.
 We control complexity by building abstractions that hide details when
 appropriate. We control complexity by establishing conventional
 interfaces that enable us to construct systems by combining standard,
-well-understood pieces in a ``mix and match'' way. We control complexity
+well-understood pieces in a "mix and match" way. We control complexity
 by establishing new languages for describing a design, each of which
 emphasizes particular aspects of the design and deemphasizes others.
 -- Alan J. Perlis
@@ -954,7 +954,7 @@ they would be individually.
 To the optimist, the glass is half full. To the pessimist, the glass is
 half empty. To the engineer, the glass is twice as big as it needs to
 be.
--- author unknown (quoted in `Robust Systems', Gerald Jay Suseman)
+-- author unknown (quoted in "Robust Systems", Gerald Jay Suseman)
 
 It is practically impossible to teach good programming to students that
 have had a prior exposure to BASIC: as potential programmers they are
@@ -1621,3 +1621,5 @@ as long as he or she lives.
 
 Are you willing to wear your white belt?
 -- George Leonard, Mastery.
+`
+export default quotes
