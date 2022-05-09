@@ -47,7 +47,7 @@ const P5Wrapper = () => {
                             const char = quotes.charAt(charIndex % quotes.length)
 
                             p5.noStroke()
-                            p5.fill(0, avg * 0.8, 0)
+                            p5.fill(0, avg * 0.85, 0)
                             p5.textSize(w * 1.2)
                             p5.textAlign(p5.CENTER, p5.CENTER);
 
