@@ -21,10 +21,7 @@ const LiveVideoPage: NextPage = () => {
     return (
         <Box id={styles.videoPage}>
             <Button data-testid='video-page-btn-toggle-camera' onClick={toggleVideoCapture}>Toggle Camera</Button>
-            {console.log('rendering video page')}
-
             <P5Wrapper />
-
             <Box>
                 <Link href='/'>
                     <Button data-testid='video-page-home-link'>Back to homepage</Button>

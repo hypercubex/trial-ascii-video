@@ -4,8 +4,9 @@ import type { Config } from '@jest/types';
 // Sync object
 const config: Config.InitialOptions = {
   verbose: true,
-  moduleNameMapper:{
-    "*.txt$": "$1"
+  testEnvironment: 'jsdom',
+  moduleNameMapper: {
+    "\\.(css|scss|sass|less)$": "identity-obj-proxy"
   }
 };
 
